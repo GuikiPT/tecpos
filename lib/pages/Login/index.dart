@@ -46,6 +46,9 @@ class LoginPage extends StatelessWidget {
                                     Theme.of(context).textTheme.bodySmall,
                               ),
                             ),
+                            const SizedBox(
+                              height: 10,
+                            ),
                             TextFormField(
                               decoration: InputDecoration(
                                 labelText: 'Password',

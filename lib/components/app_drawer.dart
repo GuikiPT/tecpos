@@ -1,4 +1,3 @@
-import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -29,10 +28,10 @@ class PosDrawer extends StatelessWidget {
                   ),
                 ),
                 ListTile(
-                  leading: const Icon(FeatherIcons.settings),
+                  leading: const Icon(Icons.settings_outlined),
                   title: const Text('Settings'),
                   onTap: () {
-                    context.go('/settings');
+                    context.push('/settings');
                   },
                 ),
               ],

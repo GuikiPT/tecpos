@@ -1,54 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:theme_provider/theme_provider.dart';
 
-/// Gives a [AppTheme] and builds a [Color].
-///
-/// Used by [PosThemeDialog].
 typedef ColorBuilderByAppTheme = Color Function(AppTheme theme);
 
-/// Ready-made [SimpleDialog] that gives the option to change theme.
 class PosThemeDialog extends StatelessWidget {
-  /// The (optional) title of the dialog is displayed in a large font at the top
-  /// of the dialog.
   final Widget title;
-
-  /// Whether to show the subtitle with theme description.
   final bool hasDescription;
-
-  /// Radius of the inner circle of theme item.
-  /// Must be a value less than or equal to 20.
-  /// (If equal to 20, outer circle will disappear)
   final double innerCircleRadius;
-
-  /// Builder for inner circle color.
-  /// If not provided, uses `primaryColor`.
   final ColorBuilderByAppTheme? innerCircleColorBuilder;
-
-  /// Builder for outer circle color.
-  /// If not provided, uses `accentColor`.
   final ColorBuilderByAppTheme? outerCircleColorBuilder;
-
-  /// Duration for item selection checkmark opacity animation.
-  /// Value is in milliseconds.
-  /// Defaults to 300.
   final int animatedOpacityDuration;
-
-  /// Selected item icon to show as an overlay.
-  /// Defaults to a white [Icons.check]
   final Widget selectedThemeIcon;
-
-  /// Color for show as an overlay over selected icon.
-  /// Use a transparent color to show behind overlay.
-  /// Defaults to transparent grey.
   final Color selectedOverlayColor;
 
-  /// Constructor for [PosThemeDialog]. Builds a [SimpleDialog] to switch themes.
-  /// Use as:
-  /// ```dart
-  /// showDialog(context: context, builder: (_) => PosThemeDialog())
-  /// ```
   PosThemeDialog({
-    super.key,
+    Key? key,
     this.title = const Text("Select Theme"),
     this.hasDescription = true,
     this.innerCircleRadius = 15,
@@ -57,7 +23,7 @@ class PosThemeDialog extends StatelessWidget {
     this.animatedOpacityDuration = 200,
     this.selectedOverlayColor = const Color(0x669E9E9E),
     this.selectedThemeIcon = const Icon(Icons.check, color: Colors.white),
-  }) {
+  }) : super(key: key) {
     assert(innerCircleRadius <= 20, "Inner circle max radius exceeds is 20px");
   }
 
@@ -76,16 +42,18 @@ class PosThemeDialog extends StatelessWidget {
         .toList();
     filteredThemes.sort((a, b) => a.id.compareTo(b.id));
 
-    return SimpleDialog(
+    return AlertDialog(
       title: title,
-      children: filteredThemes
-          .map<Widget>(
-              (theme) => _buildThemeTile(context, theme, currentThemeId))
-          .toList(),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: filteredThemes
+            .map<Widget>(
+                (theme) => _buildThemeTile(context, theme, currentThemeId))
+            .toList(),
+      ),
     );
   }
 
-  /// Capitalize the first letter
   String _capitalize(String s) {
     if (s.isEmpty) {
       return s;
@@ -96,7 +64,6 @@ class PosThemeDialog extends StatelessWidget {
     }
   }
 
-  /// Builds a theme tile
   Widget _buildThemeTile(
     BuildContext context,
     AppTheme theme,
@@ -109,36 +76,41 @@ class PosThemeDialog extends StatelessWidget {
         .replaceAll('-light', '')
         .replaceAll('-dark', '');
 
-    return ListTile(
-      style: ThemeProvider.themeOf(context).data.listTileTheme.style,
-      leading: Stack(
-        children: <Widget>[
-          CircleAvatar(
-            backgroundColor: outerCircleColorBuilder != null
-                ? outerCircleColorBuilder!(theme)
-                : theme.data.colorScheme.secondary,
-            child: CircleAvatar(
-              backgroundColor: innerCircleColorBuilder?.call(theme) ??
-                  theme.data.primaryColor,
-              radius: innerCircleRadius,
+    return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      child: ListTile(
+        style: ThemeProvider.themeOf(context).data.listTileTheme.style,
+        leading: Stack(
+          children: <Widget>[
+            CircleAvatar(
+              backgroundColor: outerCircleColorBuilder != null
+                  ? outerCircleColorBuilder!(theme)
+                  : theme.data.colorScheme.secondary,
+              child: CircleAvatar(
+                backgroundColor: innerCircleColorBuilder?.call(theme) ??
+                    theme.data.primaryColor,
+                radius: innerCircleRadius,
+              ),
             ),
-          ),
-          AnimatedOpacity(
-            duration: Duration(milliseconds: animatedOpacityDuration),
-            opacity: theme.id == currentThemeId ? 1 : 0,
-            child: CircleAvatar(
-              backgroundColor: selectedOverlayColor,
-              child: selectedThemeIcon,
+            AnimatedOpacity(
+              duration: Duration(milliseconds: animatedOpacityDuration),
+              opacity: theme.id == currentThemeId ? 1 : 0,
+              child: CircleAvatar(
+                backgroundColor: selectedOverlayColor,
+                child: selectedThemeIcon,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
+        title: Text(themeName),
+        subtitle: hasDescription ? Text(theme.description) : null,
+        onTap: () => {
+          ThemeProvider.controllerOf(context).setTheme(theme.id),
+          ThemeProvider.controllerOf(context).saveThemeToDisk(),
+          Navigator.of(context)
+              .pop(), // Close the dialog after selecting a theme
+        },
       ),
-      title: Text(themeName),
-      subtitle: hasDescription ? Text(theme.description) : null,
-      onTap: () => {
-        ThemeProvider.controllerOf(context).setTheme(theme.id),
-        ThemeProvider.controllerOf(context).saveThemeToDisk(),
-      },
     );
   }
 }

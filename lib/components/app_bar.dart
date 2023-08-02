@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class PosAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String rootTitle;
@@ -13,9 +14,19 @@ class PosAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final getCurrentPath = ModalRoute.of(context)?.settings.name;
+
     return AppBar(
       title: Text('TecPos - $rootTitle'),
       centerTitle: true,
+      leading: (getCurrentPath == 'Settings')
+          ? IconButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Use Navigator.of(context).pop()
+              },
+              icon: const Icon(Icons.undo_outlined),
+            )
+          : null,
     );
   }
 }
