@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+      - name: Copy CNAME file to build directory
+        run: cp CNAME build/web/  # Assuming the CNAME file is in the root directory of your repository
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
