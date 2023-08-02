@@ -1,3 +1,4 @@
+import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -17,9 +18,7 @@ class PosDrawer extends StatelessWidget {
             child: Column(
               children: [
                 DrawerHeader(
-                  decoration: const BoxDecoration(
-                    color: Colors.blue,
-                  ),
+                  decoration: const BoxDecoration(),
                   child: Stack(
                     children: [
                       SvgPicture.asset(
@@ -30,7 +29,7 @@ class PosDrawer extends StatelessWidget {
                   ),
                 ),
                 ListTile(
-                  leading: const Icon(Icons.settings),
+                  leading: const Icon(FeatherIcons.settings),
                   title: const Text('Settings'),
                   onTap: () {
                     context.go('/settings');

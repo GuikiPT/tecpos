@@ -135,7 +135,10 @@ class PosThemeDialog extends StatelessWidget {
       ),
       title: Text(themeName),
       subtitle: hasDescription ? Text(theme.description) : null,
-      onTap: () => ThemeProvider.controllerOf(context).setTheme(theme.id),
+      onTap: () => {
+        ThemeProvider.controllerOf(context).setTheme(theme.id),
+        ThemeProvider.controllerOf(context).saveThemeToDisk(),
+      },
     );
   }
 }

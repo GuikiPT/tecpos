@@ -32,6 +32,7 @@ class ThemeSection extends AbstractSettingsSection {
               ThemeProvider.controllerOf(context).setTheme(
                 actualTheme.replaceAll('-light', '-dark'),
               );
+              ThemeProvider.controllerOf(context).saveThemeToDisk();
             } else {
               ThemeProvider.controllerOf(context).setTheme(
                 actualTheme.replaceAll('-dark', '-light'),

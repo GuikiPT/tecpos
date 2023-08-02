@@ -15,7 +15,7 @@ class PosApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ThemeProvider(
       saveThemesOnChange: true,
-      loadThemeOnInit: false,
+      loadThemeOnInit: true,
       themes: posThemes,
       child: ThemeConsumer(
         child: Builder(
