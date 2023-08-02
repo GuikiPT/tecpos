@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:theme_provider/theme_provider.dart';
 
 typedef ColorBuilderByAppTheme = Color Function(AppTheme theme);
@@ -15,7 +16,7 @@ class PosThemeDialog extends StatelessWidget {
 
   PosThemeDialog({
     Key? key,
-    this.title = const Text("Select Theme"),
+    this.title = const Text("Escolha o Tema"),
     this.hasDescription = true,
     this.innerCircleRadius = 15,
     this.innerCircleColorBuilder,
@@ -44,12 +45,23 @@ class PosThemeDialog extends StatelessWidget {
 
     return AlertDialog(
       title: title,
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: filteredThemes
-            .map<Widget>(
-                (theme) => _buildThemeTile(context, theme, currentThemeId))
-            .toList(),
+      actions: [
+        TextButton(
+          onPressed: () {
+            context.pop();
+          },
+          child: const Text('Cancelar'),
+        ),
+      ],
+      content: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: filteredThemes
+              .map<Widget>(
+                  (theme) => _buildThemeTile(context, theme, currentThemeId))
+              .toList(),
+        ),
       ),
     );
   }

@@ -3,6 +3,7 @@ import 'package:tecpos/components/app_bar.dart';
 import 'package:settings_ui/settings_ui.dart';
 
 import 'Tiles/theme.dart';
+import 'Tiles/version.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -14,11 +15,12 @@ class SettingsPage extends StatelessWidget {
         rootTitle: 'Settings',
       ),
       body: Column(
-        children: const [
+        children: [
           Expanded(
             child: SettingsList(
               sections: [
-                ThemeSection(),
+                const ThemeSection(),
+                InfoSection(),
               ],
             ),
           ),
