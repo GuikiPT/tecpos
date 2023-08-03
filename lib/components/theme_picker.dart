@@ -59,7 +59,8 @@ class PosThemeDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: filteredThemes
               .map<Widget>(
-                  (theme) => _buildThemeTile(context, theme, currentThemeId))
+                (theme) => _buildThemeTile(context, theme, currentThemeId),
+              )
               .toList(),
         ),
       ),

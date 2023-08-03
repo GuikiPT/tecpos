@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tecpos/components/app_bar.dart';
 import 'package:tecpos/components/app_drawer.dart';
+import 'package:tecpos/pages/Login/login_popup.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -34,30 +35,10 @@ class LoginPage extends StatelessWidget {
                   builder: (BuildContext context) {
                     return AlertDialog(
                       title: const Text(
-                        'Teste',
+                        'Login',
                       ),
-                      content: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            TextFormField(
-                              decoration: InputDecoration(
-                                labelText: 'User',
-                                labelStyle:
-                                    Theme.of(context).textTheme.bodySmall,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            TextFormField(
-                              decoration: InputDecoration(
-                                labelText: 'Password',
-                                labelStyle:
-                                    Theme.of(context).textTheme.bodySmall,
-                              ),
-                            ),
-                          ],
-                        ),
+                      content: const SingleChildScrollView(
+                        child: LoginPopUp(),
                       ),
                       actions: [
                         TextButton(
