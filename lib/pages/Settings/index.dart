@@ -15,11 +15,11 @@ class SettingsPage extends StatelessWidget {
         rootTitle: 'Settings',
       ),
       body: Column(
-        children: [
+        children: const [
           Expanded(
             child: SettingsList(
               sections: [
-                const ThemeSection(),
+                ThemeSection(),
                 InfoSection(),
               ],
             ),

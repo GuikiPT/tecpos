@@ -8,30 +8,33 @@ class InfoSection extends AbstractSettingsSection {
 
   @override
   Widget build(BuildContext context) {
-    return SettingsSection(
-      title: Text(
-        'About',
-        style: Theme.of(context).textTheme.bodyMedium,
-      ),
-      tiles: <SettingsTile>[
-        SettingsTile(
-          title: const Text(
-            'GitHub',
-          ),
-          leading: const Icon(
-            Icons.code,
-          ),
-          onPressed: null,
+    return Padding(
+      padding: const EdgeInsets.only(left: 10, right: 10),
+      child: SettingsSection(
+        title: Text(
+          'About',
+          style: Theme.of(context).textTheme.bodyMedium,
         ),
-        SettingsTile(
-          title: const Text(
-            'Info',
+        tiles: <SettingsTile>[
+          SettingsTile(
+            title: const Text(
+              'GitHub',
+            ),
+            leading: const Icon(
+              Icons.code,
+            ),
+            onPressed: null,
           ),
-          description: const Text(
-            'To Do Later',
-          ),
-        )
-      ],
+          SettingsTile(
+            title: const Text(
+              'Info',
+            ),
+            description: const Text(
+              'To Do Later',
+            ),
+          )
+        ],
+      ),
     );
   }
 }

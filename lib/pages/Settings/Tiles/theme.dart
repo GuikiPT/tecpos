@@ -14,47 +14,50 @@ class ThemeSection extends AbstractSettingsSection {
     final initialValueForDarkMode =
         (actualTheme == 'dark') || actualTheme.contains('-dark') ? true : false;
 
-    return SettingsSection(
-      title: Text(
-        'Tema',
-        style: Theme.of(context).textTheme.bodyMedium,
+    return Padding(
+      padding: const EdgeInsets.only(left: 10, right: 10),
+      child: SettingsSection(
+        title: Text(
+          'Tema',
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
+        tiles: <SettingsTile>[
+          SettingsTile.switchTile(
+            title: const Text(
+              'Dark Mode',
+            ),
+            description: const Text(
+              'Ativar o Dark Mode no TecPos',
+            ),
+            onToggle: (value) {
+              if (actualTheme.contains('-light')) {
+                ThemeProvider.controllerOf(context).setTheme(
+                  actualTheme.replaceAll('-light', '-dark'),
+                );
+                ThemeProvider.controllerOf(context).saveThemeToDisk();
+              } else {
+                ThemeProvider.controllerOf(context).setTheme(
+                  actualTheme.replaceAll('-dark', '-light'),
+                );
+              }
+            },
+            initialValue: initialValueForDarkMode,
+            leading: const Icon(Icons.dark_mode_outlined),
+          ),
+          SettingsTile.navigation(
+            leading: const Icon(Icons.format_paint_outlined),
+            title: const Text(
+              'Temas',
+            ),
+            onPressed: (context) {
+              return showDialog(
+                context: context,
+                builder: (_) => PosThemeDialog(),
+              );
+            },
+          ),
+        ],
       ),
-      tiles: <SettingsTile>[
-        SettingsTile.switchTile(
-          title: const Text(
-            'Dark Mode',
-          ),
-          description: const Text(
-            'Ativar o Dark Mode no TecPos',
-          ),
-          onToggle: (value) {
-            if (actualTheme.contains('-light')) {
-              ThemeProvider.controllerOf(context).setTheme(
-                actualTheme.replaceAll('-light', '-dark'),
-              );
-              ThemeProvider.controllerOf(context).saveThemeToDisk();
-            } else {
-              ThemeProvider.controllerOf(context).setTheme(
-                actualTheme.replaceAll('-dark', '-light'),
-              );
-            }
-          },
-          initialValue: initialValueForDarkMode,
-          leading: const Icon(Icons.dark_mode_outlined),
-        ),
-        SettingsTile.navigation(
-          leading: const Icon(Icons.format_paint_outlined),
-          title: const Text(
-            'Temas',
-          ),
-          onPressed: (context) {
-            return showDialog(
-              context: context,
-              builder: (_) => PosThemeDialog(),
-            );
-          },
-        ),
-      ],
     );
   }
 }
