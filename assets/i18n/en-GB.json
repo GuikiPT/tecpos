@@ -47,6 +47,7 @@
         "langPicker": {
             "title": "Select a language"
         },
+        "pt": "Portuguese",
         "en": "English"
     }
 }

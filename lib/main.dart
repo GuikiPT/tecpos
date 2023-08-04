@@ -11,6 +11,7 @@ void main() async {
     EasyLocalization(
       supportedLocales: const [
         Locale('pt', 'PT'),
+        Locale('en', 'GB'),
       ],
       path: 'assets/i18n',
       child: const PosApp(),

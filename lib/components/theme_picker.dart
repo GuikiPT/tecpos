@@ -53,7 +53,7 @@ class PosThemeDialog extends StatelessWidget {
           onPressed: () {
             context.pop();
           },
-          child: const Text('Cancelar'),
+                child: Text(tr('generic.cancel')),
         ),
       ],
       content: SingleChildScrollView(

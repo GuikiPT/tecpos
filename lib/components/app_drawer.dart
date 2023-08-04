@@ -14,8 +14,24 @@ class PosDrawer extends StatelessWidget {
     void showLanguageSelectorDialog(BuildContext context) {
       showDialog(
         context: context,
-        builder: (BuildContext context) {
-          return const LanguageSelectorDialog();
+        builder: (context) {
+          return AlertDialog(
+            title: Text(
+              tr('languages.langPicker.title'),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  context.pop();
+                },
+                child: Text(tr('generic.cancel')),
+              ),
+            ],
+            content: const SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
+              child: LanguageSelectorDialog(),
+            ),
+          );
         },
       );
     }

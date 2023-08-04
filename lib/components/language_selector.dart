@@ -9,13 +9,10 @@ class LanguageSelectorDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final supportedLocales = context.supportedLocales;
 
-    return AlertDialog(
-      title: Text(
-        tr('languages.langPicker.title'),
-      ),
-      content: SingleChildScrollView(
-        child: ListBody(
-          children: supportedLocales.map((locale) {
+    return SingleChildScrollView(
+      child: ListBody(
+        children: supportedLocales.map(
+          (locale) {
             String label;
             switch (locale.languageCode) {
               case 'pt':
@@ -39,8 +36,8 @@ class LanguageSelectorDialog extends StatelessWidget {
                 Navigator.pop(context);
               },
             );
-          }).toList(),
-        ),
+          },
+        ).toList(),
       ),
     );
   }
@@ -54,28 +51,18 @@ class LanguageSelector extends StatelessWidget {
     final currentLocale = context.locale;
     String currentLanguageName = tr('languages.${currentLocale.languageCode}');
 
-    return InkWell(
-      // onTap: () {
-      //   showDialog(
-      //     context: context,
-      //     builder: (BuildContext context) {
-      //       return const LanguageSelectorDialog();
-      //     },
-      //   );
-      // },
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SvgPicture.asset(
-            'assets/flags/${currentLocale.languageCode}.svg',
-            width: 24,
-          ),
-          const SizedBox(width: 30),
-          Text(currentLanguageName),
-          const Icon(Icons.arrow_drop_down),
-        ],
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        SvgPicture.asset(
+          'assets/flags/${currentLocale.languageCode}.svg',
+          width: 24,
+        ),
+        const SizedBox(width: 30),
+        Text(currentLanguageName),
+        const Icon(Icons.arrow_drop_down),
+      ],
     );
   }
 }
