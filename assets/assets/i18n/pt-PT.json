@@ -47,17 +47,17 @@
                     "password": "Password"
                 }
             }
-        },
-        "generic": {
-            "ok": "Ok",
-            "cancel": "Cancelar"
-        },
-        "languages": {
-            "langPicker": {
-                "title": "Selecione uma linguagem"
-            },
-            "pt": "Português",
-            "en": "Inglês"
         }
+    },
+    "generic": {
+        "ok": "Ok",
+        "cancel": "Cancelar"
+    },
+    "languages": {
+        "langPicker": {
+            "title": "Selecione uma linguagem"
+        },
+        "pt": "Português",
+        "en": "Inglês"
     }
 }
