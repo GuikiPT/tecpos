@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tecpos/components/theme_picker.dart';
 import 'package:settings_ui/settings_ui.dart';
@@ -18,7 +19,7 @@ class ThemeSection extends AbstractSettingsSection {
       padding: const EdgeInsets.only(left: 10, right: 10),
       child: SettingsSection(
         title: Text(
-          'Tema',
+          tr('screens.settings.theme.title'),
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         tiles: <SettingsTile>[

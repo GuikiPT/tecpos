@@ -33,7 +33,6 @@ class InfoSection extends AbstractSettingsSection {
               tr(
                 'screens.settings.about.content.github.title',
               ),
-              style: Theme.of(context).textTheme.labelMedium,
             ),
             description: Text(
               tr(
@@ -54,7 +53,6 @@ class InfoSection extends AbstractSettingsSection {
               tr(
                 'screens.settings.about.content.info.title',
               ),
-              style: Theme.of(context).textTheme.labelMedium,
             ),
             description: Text(
               tr(
