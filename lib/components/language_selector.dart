@@ -85,7 +85,9 @@ class LanguageSelector extends StatelessWidget {
           'assets/flags/${currentLocale.languageCode}.svg',
           width: 24,
         ),
-        const SizedBox(width: 30),
+        const SizedBox(
+          width: 30,
+        ),
         Text(currentLanguageName),
         const Icon(Icons.arrow_drop_down),
       ],
