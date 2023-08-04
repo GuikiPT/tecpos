@@ -39,13 +39,13 @@
                         "description": "Escolha a língua do POS."
                     }
                 }
-            },
-            "login": {
-                "popUp": {
-                    "buttonText": "Login",
-                    "user": "Utilizador",
-                    "password": "Password"
-                }
+            }
+        },
+        "login": {
+            "popUp": {
+                "buttonText": "Login",
+                "user": "Utilizador",
+                "password": "Password"
             }
         }
     },
