@@ -72,16 +72,16 @@ flutter:
     # Assets 
     - assets/
     # Flags
-    - assets/flags
-    - assets/flags/en.svg
-    - assets/flags/pt.svg
+    - assets/flags/
+    # - assets/flags/en.svg
+    # - assets/flags/pt.svg
     # Languages
-    - assets/i18n
-    - assets/i18n/en-GB.json
-    - assets/i18n/pt-PT.json
+    - assets/i18n/
+    # - assets/i18n/en-GB.json
+    # - assets/i18n/pt-PT.json
     # Svgs
-    - assets/svgs
-    - assets/svgs/logo-banner.svg
+    - assets/svgs/
+    # - assets/svgs/logo-banner.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
