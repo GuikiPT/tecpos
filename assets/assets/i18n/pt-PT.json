@@ -1,0 +1,54 @@
+{
+    "screens": {
+        "settings": {
+            "name": "Definições",
+            "theme": {
+                "title": "Tema",
+                "description": "",
+                "content": {
+                    "darkMode": {
+                        "title": "Dark Mode",
+                        "description": "Ativar o Dark Mode no POS"
+                    },
+                    "theme": {
+                        "title": "Temas",
+                        "popUpTitle": "Escolha o tema do POS"
+                    }
+                }
+            },
+            "about": {
+                "title": "Sobre",
+                "description": "",
+                "content": {
+                    "github": {
+                        "title": "GitHub",
+                        "description": "Abre o repositório da app no browser."
+                    },
+                    "info": {
+                        "title": "Informações",
+                        "description": "A fazer mais tarde"
+                    }
+                }
+            }
+        },
+        "login": {
+            "popUp": {
+                "buttonText": "Login",
+                "user": "Utilizador",
+                "password": "Password"
+            }
+        }
+    },
+    "generic": {
+        "ok": "Ok",
+        "cancel": "Cancelar"
+    },
+    "languages": {
+        "langPicker": {
+            "title": "Selecione uma linguagem"
+        },
+        "pt": "Português",
+        "en": "Inglês"
+
+    }
+}
