@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  web_flutter_build_to_github_pages_deployer":
+  web_flutter_build_to_github_pages_deployer:
     runs-on: ubuntu-latest
     steps:
       - name: 🔎 - Checkout repository - 🔎
