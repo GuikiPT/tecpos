@@ -21,7 +21,7 @@ class PosAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: (getCurrentPath == 'Settings')
           ? IconButton(
               onPressed: () {
-                Navigator.of(context).pop(); // Use Navigator.of(context).pop()
+                Navigator.of(context).pop();
               },
               icon: const Icon(Icons.undo_outlined),
             )
