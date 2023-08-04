@@ -14,6 +14,7 @@ void main() async {
         Locale('en', 'GB'),
       ],
       path: 'assets/i18n',
+      startLocale: const Locale('pt', 'PT'),
       child: const PosApp(),
     ),
   );
