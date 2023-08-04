@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
             onPressed: () {
               context.go('/login');
             },
-            child: const Text('Home'),
+            child: const Text('Login'),
           ),
         ),
       ),
