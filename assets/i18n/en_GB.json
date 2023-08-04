@@ -1,32 +1,32 @@
 {
     "screens": {
         "settings": {
-            "name": "Definições",
+            "name": "Settings",
             "theme": {
-                "title": "Tema",
+                "title": "Theme",
                 "description": "",
                 "content": {
                     "darkMode": {
                         "title": "Dark Mode",
-                        "description": "Ativar o Dark Mode no POS"
+                        "description": "Activate Dark Mode in POS"
                     },
                     "theme": {
-                        "title": "Temas",
-                        "popUpTitle": "Escolha o tema do POS"
+                        "title": "Themes",
+                        "popUpTitle": "Choose the POS theme"
                     }
                 }
             },
             "about": {
-                "title": "Sobre",
+                "title": "About",
                 "description": "",
                 "content": {
                     "github": {
                         "title": "GitHub",
-                        "description": "Abre o repositório da app no browser."
+                        "description": "Opens the app repository in the browser."
                     },
                     "info": {
-                        "title": "Informações",
-                        "description": "A fazer mais tarde"
+                        "title": "Information",
+                        "description": "To be added later"
                     }
                 }
             }
@@ -34,19 +34,19 @@
         "login": {
             "popUp": {
                 "buttonText": "Login",
-                "user": "Utilizador",
+                "user": "User",
                 "password": "Password"
             }
         }
     },
     "generic": {
         "ok": "Ok",
-        "cancel": "Cancelar"
+        "cancel": "Cancel"
     },
     "languages": {
         "langPicker": {
-            "title": "Selecione uma linguagem"
+            "title": "Select a language"
         },
-        "pt": "Português"
+        "en": "English"
     }
 }

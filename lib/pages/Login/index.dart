@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -30,14 +31,16 @@ class LoginPage extends StatelessWidget {
               ),
               ElevatedButton.icon(
                 icon: const Icon(Icons.login),
-                label: const Text('Login'),
+                label: Text(
+                  tr('screens.login.popUp.buttonText'),
+                ),
                 onPressed: () async {
                   return showDialog(
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: const Text(
-                          'Login',
+                        title: Text(
+                          tr('screens.login.popUp.buttonText'),
                         ),
                         content: const SingleChildScrollView(
                           child: LoginPopUp(),
@@ -47,11 +50,15 @@ class LoginPage extends StatelessWidget {
                             onPressed: () {
                               context.pop();
                             },
-                            child: const Text('Cancel'),
+                            child: Text(
+                              tr('generic.cancel'),
+                            ),
                           ),
                           TextButton(
                             onPressed: () {},
-                            child: const Text('Ok'),
+                            child: Text(
+                              tr('generic.ok'),
+                            ),
                           ),
                         ],
                       );

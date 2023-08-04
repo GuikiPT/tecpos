@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class LoginPopUp extends StatelessWidget {
@@ -11,7 +12,7 @@ class LoginPopUp extends StatelessWidget {
       children: [
         TextFormField(
           decoration: InputDecoration(
-            labelText: 'User',
+            labelText: tr('screens.login.popUp.user'),
             labelStyle: Theme.of(context).textTheme.bodySmall,
           ),
         ),
@@ -21,7 +22,7 @@ class LoginPopUp extends StatelessWidget {
         TextFormField(
           obscureText: true,
           decoration: InputDecoration(
-            labelText: 'Password',
+            labelText: tr('screens.login.popUp.password'),
             labelStyle: Theme.of(context).textTheme.bodySmall,
           ),
         ),

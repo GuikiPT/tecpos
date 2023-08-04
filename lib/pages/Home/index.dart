@@ -11,12 +11,15 @@ class HomePage extends StatelessWidget {
       appBar: const PosAppBar(
         rootTitle: 'Home',
       ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            context.go('/login');
-          },
-          child: const Text('Home'),
+      body: Container(
+        color: Theme.of(context).colorScheme.background,
+        child: Center(
+          child: ElevatedButton(
+            onPressed: () {
+              context.go('/login');
+            },
+            child: const Text('Home'),
+          ),
         ),
       ),
     );
