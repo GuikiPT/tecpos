@@ -24,16 +24,22 @@ class InfoSection extends AbstractSettingsSection {
       padding: const EdgeInsets.only(left: 10, right: 10),
       child: SettingsSection(
         title: Text(
-          tr('settings.about.title'),
+          tr('screens.settings.about.title'),
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         tiles: <SettingsTile>[
           SettingsTile(
             title: Text(
-              tr('settings.github.title'),
+              tr(
+                'screens.settings.about.content.github.title',
+              ),
+              style: Theme.of(context).textTheme.labelMedium,
             ),
             description: Text(
-              tr('settings.github.description'),
+              tr(
+                'screens.settings.about.content.github.description',
+              ),
+              style: Theme.of(context).textTheme.labelMedium,
             ),
             leading: const Icon(
               Icons.code,
@@ -41,11 +47,20 @@ class InfoSection extends AbstractSettingsSection {
             onPressed: (context) => launchGitHubURL(),
           ),
           SettingsTile(
+            leading: const Icon(
+              Icons.info_outline,
+            ),
             title: Text(
-              tr('settings.info.title'),
+              tr(
+                'screens.settings.about.content.info.title',
+              ),
+              style: Theme.of(context).textTheme.labelMedium,
             ),
             description: Text(
-              tr('settings.info.description'),
+              tr(
+                'screens.settings.about.content.info.description',
+              ),
+              style: Theme.of(context).textTheme.labelMedium,
             ),
           ),
         ],

@@ -17,6 +17,7 @@ class PosAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     return AppBar(
       title: Text('TecPos - $rootTitle'),
+      backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       centerTitle: true,
       leading: (getCurrentPath == 'Settings')
           ? IconButton(

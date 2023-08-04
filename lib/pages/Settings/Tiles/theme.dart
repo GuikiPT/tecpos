@@ -26,8 +26,9 @@ class ThemeSection extends AbstractSettingsSection {
             title: const Text(
               'Dark Mode',
             ),
-            description: const Text(
+            description: Text(
               'Ativar o Dark Mode no TecPos',
+              style: Theme.of(context).textTheme.labelMedium,
             ),
             onToggle: (value) {
               if (actualTheme.contains('-light')) {

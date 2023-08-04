@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tecpos/components/language_selector.dart';
 
 class PosDrawer extends StatelessWidget {
   const PosDrawer({
@@ -9,6 +11,15 @@ class PosDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void showLanguageSelectorDialog(BuildContext context) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return const LanguageSelectorDialog();
+        },
+      );
+    }
+
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -29,9 +40,17 @@ class PosDrawer extends StatelessWidget {
                 ),
                 ListTile(
                   leading: const Icon(Icons.settings_outlined),
-                  title: const Text('Settings'),
+                  title: Text(
+                    tr('screens.settings.name'),
+                  ),
                   onTap: () {
                     context.push('/settings');
+                  },
+                ),
+                ListTile(
+                  title: const LanguageSelector(),
+                  onTap: () {
+                    showLanguageSelectorDialog(context);
                   },
                 ),
               ],

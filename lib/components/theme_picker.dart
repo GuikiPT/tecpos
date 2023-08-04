@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:theme_provider/theme_provider.dart';
@@ -5,7 +6,6 @@ import 'package:theme_provider/theme_provider.dart';
 typedef ColorBuilderByAppTheme = Color Function(AppTheme theme);
 
 class PosThemeDialog extends StatelessWidget {
-  final Widget title;
   final bool hasDescription;
   final double innerCircleRadius;
   final ColorBuilderByAppTheme? innerCircleColorBuilder;
@@ -16,7 +16,6 @@ class PosThemeDialog extends StatelessWidget {
 
   PosThemeDialog({
     Key? key,
-    this.title = const Text("Escolha o Tema"),
     this.hasDescription = true,
     this.innerCircleRadius = 15,
     this.innerCircleColorBuilder,
@@ -44,7 +43,11 @@ class PosThemeDialog extends StatelessWidget {
     filteredThemes.sort((a, b) => a.id.compareTo(b.id));
 
     return AlertDialog(
-      title: title,
+      title: Text(
+        tr(
+          'screens.settings.theme.content.theme.popUpTitle',
+        ),
+      ),
       actions: [
         TextButton(
           onPressed: () {

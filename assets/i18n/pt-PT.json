@@ -1,7 +1,41 @@
 {
-    "settings.about.title": "Sobre",
-    "settings.github.title": "GitHub",
-    "settings.github.description": "Abre o repositório da app no browser.",
-    "settings.info.title": "Informações",
-    "settings.info.description": "To do Later"
+    "screens": {
+        "settings": {
+            "name": "Definições",
+            "theme": {
+                "title": "Tema",
+                "description": "",
+                "content": {
+                    "darkMode": {
+                        "title": "Dark Mode",
+                        "description": "Ativar o Dark Mode no POS"
+                    },
+                    "theme": {
+                        "title": "Temas",
+                        "popUpTitle": "Escolha o tema do POS"
+                    }
+                }
+            },
+            "about": {
+                "title": "Sobre",
+                "description": "",
+                "content": {
+                    "github": {
+                        "title": "GitHub",
+                        "description": "Abre o repositório da app no browser."
+                    },
+                    "info": {
+                        "title": "Informações",
+                        "description": "A fazer mais tarde"
+                    }
+                }
+            }
+        }
+    },
+    "languages": {
+        "langPicker": {
+            "title": "Selecione uma linguagem"
+        },
+        "pt": "Português"
+    }
 }

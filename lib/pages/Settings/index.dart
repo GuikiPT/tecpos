@@ -15,10 +15,18 @@ class SettingsPage extends StatelessWidget {
         rootTitle: 'Settings',
       ),
       body: Column(
-        children: const [
+        children: [
           Expanded(
             child: SettingsList(
-              sections: [
+              lightTheme: SettingsThemeData(
+                settingsListBackground:
+                    Color(Theme.of(context).colorScheme.background.value),
+              ),
+              darkTheme: SettingsThemeData(
+                settingsListBackground:
+                    Color(Theme.of(context).colorScheme.background.value),
+              ),
+              sections: const [
                 ThemeSection(),
                 InfoSection(),
               ],
