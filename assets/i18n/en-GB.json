@@ -29,6 +29,16 @@
                         "description": "To be added later"
                     }
                 }
+            },
+            "language": {
+                "title": "Language",
+                "description": "Choose the language for the POS.",
+                "content": {
+                    "choose_lang": {
+                        "title": "Language",
+                        "description": "Choose the language for the POS."
+                    }
+                }
             }
         },
         "login": {

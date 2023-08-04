@@ -11,30 +11,7 @@ class PosDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void showLanguageSelectorDialog(BuildContext context) {
-      showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text(
-              tr('languages.langPicker.title'),
-            ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  context.pop();
-                },
-                child: Text(tr('generic.cancel')),
-              ),
-            ],
-            content: const SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
-              child: LanguageSelectorDialog(),
-            ),
-          );
-        },
-      );
-    }
+    
 
     return Drawer(
       child: ListView(

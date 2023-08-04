@@ -29,26 +29,35 @@
                         "description": "A fazer mais tarde"
                     }
                 }
+            },
+            "language": {
+                "title": "Língua",
+                "description": "Escolha a língua do POS.",
+                "content": {
+                    "choose_lang": {
+                        "title": "Língua",
+                        "description": "Escolha a língua do POS."
+                    }
+                }
+            },
+            "login": {
+                "popUp": {
+                    "buttonText": "Login",
+                    "user": "Utilizador",
+                    "password": "Password"
+                }
             }
         },
-        "login": {
-            "popUp": {
-                "buttonText": "Login",
-                "user": "Utilizador",
-                "password": "Password"
-            }
+        "generic": {
+            "ok": "Ok",
+            "cancel": "Cancelar"
+        },
+        "languages": {
+            "langPicker": {
+                "title": "Selecione uma linguagem"
+            },
+            "pt": "Português",
+            "en": "Inglês"
         }
-    },
-    "generic": {
-        "ok": "Ok",
-        "cancel": "Cancelar"
-    },
-    "languages": {
-        "langPicker": {
-            "title": "Selecione uma linguagem"
-        },
-        "pt": "Português",
-        "en": "Inglês"
-
     }
 }

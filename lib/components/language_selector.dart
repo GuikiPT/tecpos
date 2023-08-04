@@ -1,6 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+
+void showLanguageSelectorDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: Text(
+          tr('languages.langPicker.title'),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              context.pop();
+            },
+            child: Text(tr('generic.cancel')),
+          ),
+        ],
+        content: const SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: LanguageSelectorDialog(),
+        ),
+      );
+    },
+  );
+}
 
 class LanguageSelectorDialog extends StatelessWidget {
   const LanguageSelectorDialog({super.key});

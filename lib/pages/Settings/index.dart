@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tecpos/components/app_bar.dart';
 import 'package:settings_ui/settings_ui.dart';
 
+import 'Tiles/language.dart';
 import 'Tiles/theme.dart';
 import 'Tiles/version.dart';
 
@@ -28,6 +29,7 @@ class SettingsPage extends StatelessWidget {
               ),
               sections: const [
                 ThemeSection(),
+                LanguageSection(),
                 InfoSection(),
               ],
             ),
