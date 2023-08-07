@@ -26,7 +26,11 @@
                     },
                     "info": {
                         "title": "Information",
-                        "description": "To be added later"
+                        "description": "To be added later",
+                        "content": {
+                            "appName": "App Name: ",
+                            "version": "Version: "
+                        }
                     }
                 }
             },
