@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class InfoSection extends AbstractSettingsSection {
   const InfoSection({
@@ -22,46 +23,59 @@ class InfoSection extends AbstractSettingsSection {
 
     return Padding(
       padding: const EdgeInsets.only(left: 10, right: 10),
-      child: SettingsSection(
-        title: Text(
-          tr('screens.settings.about.title'),
-          style: Theme.of(context).textTheme.bodyMedium,
-        ),
-        tiles: <SettingsTile>[
-          SettingsTile(
+      child: FutureBuilder<PackageInfo>(
+        future: PackageInfo.fromPlatform(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const CircularProgressIndicator();
+          }
+
+          if (snapshot.hasError) {
+            return const Text('Error fetching package info');
+          }
+
+          final packageInfo = snapshot.data!;
+
+          return SettingsSection(
             title: Text(
-              tr(
-                'screens.settings.about.content.github.title',
+              tr('screens.settings.about.title'),
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+            tiles: <SettingsTile>[
+              SettingsTile(
+                title: Text(
+                  tr(
+                    'screens.settings.about.content.github.title',
+                  ),
+                ),
+                description: Text(
+                  tr(
+                    'screens.settings.about.content.github.description',
+                  ),
+                  style: Theme.of(context).textTheme.labelMedium,
+                ),
+                leading: const Icon(
+                  Icons.code,
+                ),
+                onPressed: (context) => launchGitHubURL(),
               ),
-            ),
-            description: Text(
-              tr(
-                'screens.settings.about.content.github.description',
+              SettingsTile(
+                leading: const Icon(
+                  Icons.info_outline,
+                ),
+                title: Text(
+                  tr(
+                    'screens.settings.about.content.info.title',
+                  ),
+                ),
+                description: Text(
+                  '${tr('screens.settings.about.content.info.content.appName')}${packageInfo.appName}\n${tr('screens.settings.about.content.info.content.version')}${packageInfo.version}',
+                  style: Theme.of(context).textTheme.labelMedium,
+                ),
               ),
-              style: Theme.of(context).textTheme.labelMedium,
-            ),
-            leading: const Icon(
-              Icons.code,
-            ),
-            onPressed: (context) => launchGitHubURL(),
-          ),
-          SettingsTile(
-            leading: const Icon(
-              Icons.info_outline,
-            ),
-            title: Text(
-              tr(
-                'screens.settings.about.content.info.title',
-              ),
-            ),
-            description: Text(
-              tr(
-                'screens.settings.about.content.info.description',
-              ),
-              style: Theme.of(context).textTheme.labelMedium,
-            ),
-          ),
-        ],
+            ],
+          );
+        },
       ),
     );
   }

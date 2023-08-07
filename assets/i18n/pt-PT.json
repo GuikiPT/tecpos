@@ -26,7 +26,11 @@
                     },
                     "info": {
                         "title": "Informações",
-                        "description": "A fazer mais tarde"
+                        "description": "A fazer mais tarde",
+                        "content": {
+                            "appName": "Nome: ",
+                            "version": "Versão: "
+                        }
                     }
                 }
             },

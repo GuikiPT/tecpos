@@ -44,6 +44,8 @@ dependencies:
   hooks_riverpod: ^2.3.7
   url_launcher: ^6.1.11
   easy_localization: ^3.0.2
+  package_info_plus: ^4.1.0
+  device_info_plus: ^9.0.3
 
 dev_dependencies:
   flutter_test:
