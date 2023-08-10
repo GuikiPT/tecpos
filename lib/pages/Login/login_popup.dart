@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:tecpos/components/numpad.dart';
 
 class LoginPopUp extends StatelessWidget {
   const LoginPopUp({
@@ -26,6 +27,10 @@ class LoginPopUp extends StatelessWidget {
             labelStyle: Theme.of(context).textTheme.bodySmall,
           ),
         ),
+        const SizedBox(
+          height: 10,
+        ),
+        const POSNumpad(),
       ],
     );
   }
