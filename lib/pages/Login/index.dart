@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:tecpos/components/app_bar.dart';
 import 'package:tecpos/components/app_drawer.dart';
 import 'package:tecpos/pages/Login/login_popup.dart';
@@ -45,22 +44,22 @@ class LoginPage extends StatelessWidget {
                         content: const SingleChildScrollView(
                           child: LoginPopUp(),
                         ),
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              context.pop();
-                            },
-                            child: Text(
-                              tr('generic.cancel'),
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () {},
-                            child: Text(
-                              tr('generic.ok'),
-                            ),
-                          ),
-                        ],
+                        // actions: [
+                        //   TextButton(
+                        //     onPressed: () {
+                        //       context.pop();
+                        //     },
+                        //     child: Text(
+                        //       tr('generic.cancel'),
+                        //     ),
+                        //   ),
+                        //   TextButton(
+                        //     onPressed: () {},
+                        //     child: Text(
+                        //       tr('generic.ok'),
+                        //     ),
+                        //   ),
+                        // ],
                       );
                     },
                   );
