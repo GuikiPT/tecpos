@@ -6,10 +6,10 @@ class LoginPopUp extends StatefulWidget {
   const LoginPopUp({super.key});
 
   @override
-  _LoginPopUpState createState() => _LoginPopUpState();
+  LoginPopUpState createState() => LoginPopUpState();
 }
 
-class _LoginPopUpState extends State<LoginPopUp> {
+class LoginPopUpState extends State<LoginPopUp> {
   final TextEditingController _usernameController = TextEditingController();
 
   @override

@@ -40,26 +40,34 @@ class LoginPage extends StatelessWidget {
                       return AlertDialog(
                         title: Text(
                           tr('screens.login.popUp.buttonText'),
+                          textAlign: TextAlign.center,
                         ),
-                        content: const SingleChildScrollView(
-                          child: LoginPopUp(),
+                        content: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              Center(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 5,
+                                    ),
+                                  ),
+                                  child: SvgPicture.asset(
+                                    'assets/svgs/worker.svg',
+                                    width: 128,
+                                    height: 128,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              const LoginPopUp(),
+                            ],
+                          ),
                         ),
-                        // actions: [
-                        //   TextButton(
-                        //     onPressed: () {
-                        //       context.pop();
-                        //     },
-                        //     child: Text(
-                        //       tr('generic.cancel'),
-                        //     ),
-                        //   ),
-                        //   TextButton(
-                        //     onPressed: () {},
-                        //     child: Text(
-                        //       tr('generic.ok'),
-                        //     ),
-                        //   ),
-                        // ],
                       );
                     },
                   );
