@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class POSNumpad extends StatelessWidget {
-  const POSNumpad({super.key});
+  final Function(String) onButtonPressed;
+
+  const POSNumpad({Key? key, required this.onButtonPressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class POSNumpad extends StatelessWidget {
         ),
         buildRow(
           context,
-          [Icons.backspace_outlined, '0', Icons.done],
+          [const Icon(Icons.backspace_outlined), '0', const Icon(Icons.done)],
         ),
       ],
     );
@@ -45,25 +47,30 @@ class POSNumpad extends StatelessWidget {
               padding: const EdgeInsets.all(4.0),
               child: ElevatedButton(
                 onPressed: () {
-                  if (button == 'Clear') {
-                  } else if (button == 'Done') {
-                  } else {}
+                  onButtonPressed(button);
                 },
                 child: Text(button),
               ),
             ),
           );
-        } else if (button is IconData) {
+        } else if (button is Icon) {
           return Expanded(
             child: Padding(
               padding: const EdgeInsets.all(4.0),
               child: ElevatedButton(
                 onPressed: () {
-                  if (button == Icons.clear) {
-                  } else if (button == Icons.done) {
-                  } else {}
+                  onButtonPressed(
+                    button.icon == Icons.backspace_outlined ? 'Clear' : 'Done',
+                  );
                 },
-                child: Icon(button),
+                onLongPress: () {
+                  onButtonPressed(
+                    button.icon == Icons.backspace_outlined
+                        ? 'ClearAll'
+                        : 'Done',
+                  );
+                },
+                child: button,
               ),
             ),
           );
