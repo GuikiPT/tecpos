@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tecpos/components/numpad.dart';
 
@@ -23,8 +24,9 @@ class _LoginPopUpState extends State<LoginPopUp> {
       children: [
         TextFormField(
           controller: _usernameController,
-          decoration: const InputDecoration(
-            labelText: 'Username',
+          decoration: InputDecoration(
+            labelText: tr('screens.login.popUp.user'),
+            labelStyle: Theme.of(context).textTheme.bodySmall,
           ),
         ),
         const SizedBox(
@@ -32,8 +34,9 @@ class _LoginPopUpState extends State<LoginPopUp> {
         ),
         TextFormField(
           obscureText: true,
-          decoration: const InputDecoration(
-            labelText: 'Password',
+          decoration: InputDecoration(
+            labelText: tr('screens.login.popUp.password'),
+            labelStyle: Theme.of(context).textTheme.bodySmall,
           ),
         ),
         const SizedBox(
