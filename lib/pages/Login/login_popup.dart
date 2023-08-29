@@ -24,6 +24,7 @@ class LoginPopUpState extends State<LoginPopUp> {
       children: [
         TextFormField(
           controller: _usernameController,
+          keyboardType: TextInputType.number,
           decoration: InputDecoration(
             labelText: tr('screens.login.popUp.user'),
             labelStyle: Theme.of(context).textTheme.bodySmall,
@@ -34,6 +35,7 @@ class LoginPopUpState extends State<LoginPopUp> {
         ),
         TextFormField(
           obscureText: true,
+          keyboardType: TextInputType.number,
           decoration: InputDecoration(
             labelText: tr('screens.login.popUp.password'),
             labelStyle: Theme.of(context).textTheme.bodySmall,
