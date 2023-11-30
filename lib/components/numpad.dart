@@ -46,10 +46,17 @@ class POSNumpad extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(4.0),
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shape: const CircleBorder(),
+                  padding: const EdgeInsets.all(20),
+                ),
                 onPressed: () {
                   onButtonPressed(button);
                 },
-                child: Text(button),
+                child: Text(
+                  button,
+                  style: const TextStyle(fontSize: 18),
+                ),
               ),
             ),
           );
@@ -70,6 +77,10 @@ class POSNumpad extends StatelessWidget {
                         : 'Done',
                   );
                 },
+                style: ElevatedButton.styleFrom(
+                  shape: const CircleBorder(),
+                  padding: const EdgeInsets.all(20),
+                ),
                 child: button,
               ),
             ),

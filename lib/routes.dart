@@ -4,28 +4,26 @@ import 'package:tecpos/pages/Login/index.dart';
 import 'package:tecpos/pages/Settings/index.dart';
 import 'package:theme_provider/theme_provider.dart';
 
-final posRouterConfig = GoRouter(
-  routes: [
-    GoRoute(
-      name: 'Home',
-      builder: (context, state) => const ThemeConsumer(
-        child: HomePage(),
-      ),
-      path: '/',
+final posRouterConfig = GoRouter(routes: [
+  GoRoute(
+    name: 'Home',
+    builder: (context, state) => const ThemeConsumer(
+      child: HomePage(),
     ),
-    GoRoute(
-      name: 'Login',
-      builder: (context, state) => const ThemeConsumer(
-        child: LoginPage(),
-      ),
-      path: '/login',
+    path: '/home',
+  ),
+  GoRoute(
+    name: 'Login',
+    builder: (context, state) => const ThemeConsumer(
+      child: LoginPage(),
     ),
-    GoRoute(
-      name: 'Settings',
-      builder: (context, state) => const ThemeConsumer(
-        child: SettingsPage(),
-      ),
-      path: '/settings',
+    path: '/login',
+  ),
+  GoRoute(
+    name: 'Settings',
+    builder: (context, state) => const ThemeConsumer(
+      child: SettingsPage(),
     ),
-  ],
-);
+    path: '/settings',
+  ),
+], initialLocation: '/login');
