@@ -15,8 +15,10 @@ class PosAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final getCurrentPath = ModalRoute.of(context)?.settings.name;
 
+    String finalAppBarTitle = rootTitle.isNotEmpty ? ' - $rootTitle' : '';
+
     return AppBar(
-      title: Text('TecPos - $rootTitle'),
+      title: Text('TecPos $finalAppBarTitle'),
       backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       centerTitle: true,
       leading: (getCurrentPath == 'Settings')
