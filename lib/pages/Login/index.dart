@@ -48,11 +48,8 @@ class LoginPage extends StatelessWidget {
                               Center(
                                 child: Container(
                                   decoration: BoxDecoration(
+                                    color: Theme.of(context).primaryColor,
                                     shape: BoxShape.circle,
-                                    border: Border.all(
-                                      color: Theme.of(context).primaryColor,
-                                      width: 5,
-                                    ),
                                   ),
                                   child: SvgPicture.asset(
                                     'assets/svgs/worker.svg',
