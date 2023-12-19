@@ -1,52 +1,41 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:tecpos/components/numpad.dart';
 
-class LoginPopUp extends StatefulWidget {
-  const LoginPopUp({super.key});
-
-  @override
-  LoginPopUpState createState() => LoginPopUpState();
-}
-
-class LoginPopUpState extends State<LoginPopUp> {
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  late TextEditingController _activeController;
-
-  late final FocusNode _usernameFocusNode = FocusNode();
-  late final FocusNode _passwordFocusNode = FocusNode();
-  late FocusNode _activeFocusInput;
-
-  @override
-  void initState() {
-    super.initState();
-    _activeController = _usernameController;
-    _activeFocusInput = _usernameFocusNode;
-  }
-
-  @override
-  void dispose() {
-    _usernameController.dispose();
-    _usernameFocusNode.dispose();
-
-    _passwordController.dispose();
-    _passwordFocusNode.dispose();
-    super.dispose();
-  }
+class LoginPopUp extends HookWidget {
+  const LoginPopUp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final usernameController = useTextEditingController();
+    final passwordController = useTextEditingController();
+    final usernameFocusNode = useFocusNode();
+    final passwordFocusNode = useFocusNode();
+    late TextEditingController activeController;
+    late FocusNode activeFocusInput;
+
+    useEffect(() {
+      activeController = usernameController;
+      activeFocusInput = usernameFocusNode;
+      return () {
+        usernameController.dispose();
+        usernameFocusNode.dispose();
+        passwordController.dispose();
+        passwordFocusNode.dispose();
+      };
+    }, const []);
+
     return Column(
       children: [
         TextFormField(
-          controller: _usernameController,
+          controller: usernameController,
           onTap: () {
-            _activeController = _usernameController;
-            _usernameFocusNode.requestFocus();
-            _activeFocusInput = _usernameFocusNode;
+            activeController = usernameController;
+            usernameFocusNode.requestFocus();
+            activeFocusInput = usernameFocusNode;
           },
-          focusNode: _usernameFocusNode,
+          focusNode: usernameFocusNode,
           keyboardType: TextInputType.none,
           decoration: InputDecoration(
             labelText: tr('screens.login.popUp.user'),
@@ -57,13 +46,13 @@ class LoginPopUpState extends State<LoginPopUp> {
           height: 10,
         ),
         TextFormField(
-          controller: _passwordController,
+          controller: passwordController,
           onTap: () {
-            _activeController = _passwordController;
-            _passwordFocusNode.requestFocus();
-            _activeFocusInput = _passwordFocusNode;
+            activeController = passwordController;
+            passwordFocusNode.requestFocus();
+            activeFocusInput = passwordFocusNode;
           },
-          focusNode: _passwordFocusNode,
+          focusNode: passwordFocusNode,
           obscureText: true,
           keyboardType: TextInputType.none,
           decoration: InputDecoration(
@@ -77,20 +66,20 @@ class LoginPopUpState extends State<LoginPopUp> {
         POSNumpad(
           onButtonPressed: (button) {
             if (button == 'Clear') {
-              if (_activeController.text.isNotEmpty) {
-                final newText = _activeController.text
-                    .substring(0, _activeController.text.length - 1);
-                _activeController.text = newText;
+              if (activeController.text.isNotEmpty) {
+                final newText = activeController.text
+                    .substring(0, activeController.text.length - 1);
+                activeController.text = newText;
               }
             } else if (button == 'ClearAll') {
-              _activeController.text = '';
+              activeController.text = '';
             } else if (button == 'Done') {
               // Handle done logic here
             } else {
-              _activeController.text += button;
+              activeController.text += button;
             }
 
-            _activeFocusInput.requestFocus();
+            activeFocusInput.requestFocus();
           },
         ),
       ],

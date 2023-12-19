@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tecpos/config/themes.dart';
 import 'package:tecpos/routes.dart';
 import 'package:theme_provider/theme_provider.dart';
@@ -8,14 +9,16 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   runApp(
-    EasyLocalization(
-      supportedLocales: const [
-        Locale('pt', 'PT'),
-        Locale('en', 'GB'),
-      ],
-      path: 'assets/i18n',
-      startLocale: const Locale('pt', 'PT'),
-      child: const PosApp(),
+    ProviderScope(
+      child: EasyLocalization(
+        supportedLocales: const [
+          Locale('pt', 'PT'),
+          Locale('en', 'GB'),
+        ],
+        path: 'assets/i18n',
+        startLocale: const Locale('pt', 'PT'),
+        child: const PosApp(),
+      ),
     ),
   );
 }
