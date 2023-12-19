@@ -12,19 +12,18 @@ class LoginPopUp extends HookWidget {
     final passwordController = useTextEditingController();
     final usernameFocusNode = useFocusNode();
     final passwordFocusNode = useFocusNode();
+
     late TextEditingController activeController;
     late FocusNode activeFocusInput;
+
+    final obscurePasswordProtection = useState(true);
 
     useEffect(() {
       activeController = usernameController;
       activeFocusInput = usernameFocusNode;
-      return () {
-        usernameController.dispose();
-        usernameFocusNode.dispose();
-        passwordController.dispose();
-        passwordFocusNode.dispose();
-      };
-    }, const []);
+
+      return () {};
+    }, []);
 
     return Column(
       children: [
@@ -53,11 +52,20 @@ class LoginPopUp extends HookWidget {
             activeFocusInput = passwordFocusNode;
           },
           focusNode: passwordFocusNode,
-          obscureText: true,
+          obscureText: obscurePasswordProtection.value,
           keyboardType: TextInputType.none,
           decoration: InputDecoration(
             labelText: tr('screens.login.popUp.password'),
             labelStyle: Theme.of(context).textTheme.bodySmall,
+            suffixIcon: IconButton(
+              icon: Icon(obscurePasswordProtection.value
+                  ? Icons.visibility_off_outlined
+                  : Icons.visibility),
+              onPressed: () {
+                obscurePasswordProtection.value =
+                    !obscurePasswordProtection.value;
+              },
+            ),
           ),
         ),
         const SizedBox(
