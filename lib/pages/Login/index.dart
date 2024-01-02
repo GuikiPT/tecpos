@@ -16,7 +16,7 @@ class LoginPage extends StatelessWidget {
       ),
       drawer: const PosDrawer(),
       body: Container(
-        color: Theme.of(context).colorScheme.background,
+        color: Theme.of(context).scaffoldBackgroundColor,
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

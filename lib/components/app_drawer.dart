@@ -11,9 +11,8 @@ class PosDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
-
     return Drawer(
+      backgroundColor: Theme.of(context).drawerTheme.backgroundColor,
       child: ListView(
         padding: EdgeInsets.zero,
         children: [

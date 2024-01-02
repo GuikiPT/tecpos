@@ -86,7 +86,7 @@ class LanguageSelector extends StatelessWidget {
           width: 24,
         ),
         const SizedBox(
-          width: 30,
+          width: 15,
         ),
         Text(currentLanguageName),
         const Icon(Icons.arrow_drop_down),

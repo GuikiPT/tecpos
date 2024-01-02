@@ -7,7 +7,7 @@ import 'package:theme_provider/theme_provider.dart';
 final posRouterConfig = GoRouter(routes: [
   GoRoute(
     name: 'Home',
-    builder: (context, state) => const ThemeConsumer(
+    builder: (context, state) => ThemeConsumer(
       child: HomePage(),
     ),
     path: '/home',
