@@ -18,6 +18,7 @@ class HomePage extends HookWidget {
       ),
       drawer: const PosDrawer(),
       body: SingleChildScrollView(
+        clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Container(
           color: Theme.of(context).scaffoldBackgroundColor,
           child: Padding(
@@ -137,50 +138,109 @@ class HomePage extends HookWidget {
                         ),
                       ),
                     ),
+                    ExpansionPanel(
+                      canTapOnHeader: true,
+                      isExpanded: expandedPanels.value.contains(1),
+                      headerBuilder: (context, isExpanded) {
+                        return Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Row(
+                            children: [
+                              const Column(
+                                children: [
+                                  Icon(
+                                    Icons.group_outlined,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Column(
+                                children: [
+                                  Text(
+                                    'Clientes',
+                                    style:
+                                        Theme.of(context).textTheme.titleMedium,
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                        );
+                      },
+                      body: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Column(
+                          children: [
+                            ListTile(
+                              title: Text(
+                                'Clientes',
+                                style: Theme.of(context).textTheme.titleMedium,
+                              ),
+                              leading: const Icon(
+                                Icons.group_outlined,
+                              ),
+                              onTap: () {},
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    ExpansionPanel(
+                      canTapOnHeader: true,
+                      isExpanded: expandedPanels.value.contains(2),
+                      headerBuilder: (context, isExpanded) {
+                        return Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Row(
+                            children: [
+                              const Column(
+                                children: [
+                                  Icon(
+                                    Icons.inventory_2_outlined,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Column(
+                                children: [
+                                  Text(
+                                    'Produtos',
+                                    style:
+                                        Theme.of(context).textTheme.titleMedium,
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                        );
+                      },
+                      body: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Column(
+                          children: [
+                            ListTile(
+                              title: Text(
+                                'Produtos',
+                                style: Theme.of(context).textTheme.titleMedium,
+                              ),
+                              leading: const Icon(
+                                Icons.inventory_2_outlined,
+                              ),
+                              onTap: () {},
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(
                   height: 5,
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.background,
-                  ),
-                  padding: Theme.of(context).expansionTileTheme.tilePadding,
-                  child: ListTile(
-                    title: Text(
-                      'Clientes',
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    leading: Icon(
-                      Icons.people,
-                      color: Theme.of(context).expansionTileTheme.iconColor,
-                    ),
-                    onTap: () {},
-                    hoverColor: Colors.red,
-                  ),
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.background,
-                  ),
-                  padding: Theme.of(context).expansionTileTheme.tilePadding,
-                  child: ListTile(
-                    title: Text(
-                      'Produtos',
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    leading: Icon(
-                      Icons.inventory_2_outlined,
-                      color: Theme.of(context).expansionTileTheme.iconColor,
-                    ),
-                    onTap: () {},
-                    hoverColor: Colors.red,
-                  ),
-                )
               ],
             ),
           ),
