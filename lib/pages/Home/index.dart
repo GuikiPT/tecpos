@@ -1,7 +1,92 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tecpos/components/app_bar.dart';
 import 'package:tecpos/components/app_drawer.dart';
+
+class MenuItem {
+  final String title;
+  final IconData icon;
+  final List<MenuItem>? subItems;
+  final Function(BuildContext) onTap;
+
+  MenuItem({
+    required this.title,
+    required this.icon,
+    this.subItems,
+    required this.onTap,
+  });
+}
+
+final List<MenuItem> menuItems = [
+  MenuItem(
+    title: 'Vendas',
+    icon: Icons.shopping_bag_outlined,
+    onTap: (BuildContext context) {},
+    subItems: [
+      MenuItem(
+        title: 'Vendas',
+        icon: Icons.shopping_bag_outlined,
+        onTap: (BuildContext context) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            context.go('/login');
+          });
+        },
+      ),
+      MenuItem(
+        title: 'Pesquisar Vendas',
+        icon: Icons.search_outlined,
+        onTap: (BuildContext context) {},
+      ),
+      MenuItem(
+        title: 'Fechar Caixa',
+        icon: Icons.logout_outlined,
+        onTap: (BuildContext context) {},
+      ),
+      MenuItem(
+        title: 'Caixa Fechada',
+        icon: Icons.block_outlined,
+        onTap: (BuildContext context) {},
+      ),
+      MenuItem(
+        title: 'Venda de Produtos',
+        icon: Icons.auto_graph_outlined,
+        onTap: (BuildContext context) {},
+      ),
+      MenuItem(
+        title: 'SaftPT',
+        icon: Icons.attach_money_outlined,
+        onTap: (BuildContext context) {},
+      ),
+    ],
+  ),
+  MenuItem(
+    title: 'Clientes',
+    icon: Icons.group_outlined,
+    onTap: (BuildContext context) {},
+    subItems: [
+      MenuItem(
+        title: 'Clientes',
+        icon: Icons.group_outlined,
+        onTap: (BuildContext context) {},
+      ),
+    ],
+  ),
+  MenuItem(
+    title: 'Produtos',
+    icon: Icons.inventory_2_outlined,
+    onTap: (BuildContext context) {},
+    subItems: [
+      MenuItem(
+        title: 'Produtos',
+        icon: Icons.inventory_2_outlined,
+        onTap: (BuildContext context) {},
+      ),
+    ],
+  ),
+];
 
 class HomePage extends HookWidget {
   HomePage({Key? key}) : super(key: key);
@@ -29,8 +114,6 @@ class HomePage extends HookWidget {
                   expandedHeaderPadding: EdgeInsets.zero,
                   elevation: 1,
                   expansionCallback: (int panelIndex, bool isExpanded) {
-                    debugPrint("Start: $panelIndex, $isExpanded");
-
                     List<int> expanded = [...expandedPanels.value];
                     if (isExpanded) {
                       expanded.add(panelIndex);
@@ -40,206 +123,30 @@ class HomePage extends HookWidget {
                           .toList();
                     }
                     expandedPanels.value = expanded;
-
-                    debugPrint("Final: ${expandedPanels.value}");
                   },
-                  children: [
-                    ExpansionPanel(
+                  children: menuItems.map((menuItem) {
+                    int index = menuItems.indexOf(menuItem);
+                    return ExpansionPanel(
                       canTapOnHeader: true,
-                      isExpanded: expandedPanels.value.contains(0),
+                      isExpanded: expandedPanels.value.contains(index),
                       headerBuilder: (context, isExpanded) {
-                        return Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Row(
-                            children: [
-                              const Column(
-                                children: [
-                                  Icon(
-                                    Icons.shopping_bag_outlined,
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Column(
-                                children: [
-                                  Text(
-                                    'Vendas',
-                                    style:
-                                        Theme.of(context).textTheme.titleMedium,
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
+                        return ListTile(
+                          leading: Icon(menuItem.icon),
+                          title: Text(menuItem.title),
                         );
                       },
-                      body: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Column(
-                          children: [
-                            ListTile(
-                              title: Text(
-                                'Vendas',
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
-                              leading: const Icon(
-                                Icons.shopping_bag_outlined,
-                              ),
-                              onTap: () {},
-                            ),
-                            ListTile(
-                              title: Text('Pesquisar Vendas',
-                                  style:
-                                      Theme.of(context).textTheme.titleMedium),
-                              leading: const Icon(
-                                Icons.search_outlined,
-                              ),
-                              onTap: () {},
-                            ),
-                            ListTile(
-                              title: Text('Fechar Caixa',
-                                  style:
-                                      Theme.of(context).textTheme.titleMedium),
-                              leading: const Icon(
-                                Icons.logout_outlined,
-                              ),
-                              onTap: () {},
-                            ),
-                            ListTile(
-                              title: Text('Caixa Fechada',
-                                  style:
-                                      Theme.of(context).textTheme.titleMedium),
-                              leading: const Icon(
-                                Icons.block_outlined,
-                              ),
-                              onTap: () {},
-                            ),
-                            ListTile(
-                              title: Text('Venda de Produtos',
-                                  style:
-                                      Theme.of(context).textTheme.titleMedium),
-                              leading: const Icon(
-                                Icons.auto_graph_outlined,
-                              ),
-                              onTap: () {},
-                            ),
-                            ListTile(
-                              title: Text('SaftPT',
-                                  style:
-                                      Theme.of(context).textTheme.titleMedium),
-                              leading: const Icon(
-                                Icons.attach_money_outlined,
-                              ),
-                              onTap: () {},
-                            ),
-                          ],
-                        ),
+                      body: Column(
+                        children: menuItem.subItems?.map((subItem) {
+                              return ListTile(
+                                leading: Icon(subItem.icon),
+                                title: Text(subItem.title),
+                                onTap: () => subItem.onTap(context),
+                              );
+                            }).toList() ??
+                            [],
                       ),
-                    ),
-                    ExpansionPanel(
-                      canTapOnHeader: true,
-                      isExpanded: expandedPanels.value.contains(1),
-                      headerBuilder: (context, isExpanded) {
-                        return Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Row(
-                            children: [
-                              const Column(
-                                children: [
-                                  Icon(
-                                    Icons.group_outlined,
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Column(
-                                children: [
-                                  Text(
-                                    'Clientes',
-                                    style:
-                                        Theme.of(context).textTheme.titleMedium,
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        );
-                      },
-                      body: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Column(
-                          children: [
-                            ListTile(
-                              title: Text(
-                                'Clientes',
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
-                              leading: const Icon(
-                                Icons.group_outlined,
-                              ),
-                              onTap: () {},
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    ExpansionPanel(
-                      canTapOnHeader: true,
-                      isExpanded: expandedPanels.value.contains(2),
-                      headerBuilder: (context, isExpanded) {
-                        return Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Row(
-                            children: [
-                              const Column(
-                                children: [
-                                  Icon(
-                                    Icons.inventory_2_outlined,
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Column(
-                                children: [
-                                  Text(
-                                    'Produtos',
-                                    style:
-                                        Theme.of(context).textTheme.titleMedium,
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        );
-                      },
-                      body: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Column(
-                          children: [
-                            ListTile(
-                              title: Text(
-                                'Produtos',
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
-                              leading: const Icon(
-                                Icons.inventory_2_outlined,
-                              ),
-                              onTap: () {},
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 5,
+                    );
+                  }).toList(),
                 ),
               ],
             ),
