@@ -124,7 +124,9 @@ class LoginPopUp extends HookWidget {
               if (activeFocusInput.hasFocus) {
                 activeFocusInput.unfocus();
                 Future.delayed(
-                    Duration.zero, () => activeFocusInput.requestFocus());
+                  Duration.zero,
+                  () => activeFocusInput.requestFocus(),
+                );
               } else {
                 activeFocusInput.requestFocus();
               }
