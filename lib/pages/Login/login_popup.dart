@@ -7,7 +7,10 @@ import 'package:go_router/go_router.dart';
 import 'package:tecpos/components/numpad.dart';
 
 class LoginPopUp extends HookWidget {
-  const LoginPopUp({Key? key}) : super(key: key);
+  final Function(bool) onLoginStatusChanged;
+
+  const LoginPopUp({Key? key, required this.onLoginStatusChanged})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -113,8 +116,10 @@ class LoginPopUp extends HookWidget {
                 } else if (usernameController.text == '123' &&
                     passwordController.text == '123') {
                   loginError.value = null;
+                  onLoginStatusChanged(true);
                   context.go('/home');
                 } else {
+                  onLoginStatusChanged(false);
                   loginError.value =
                       tr('screens.login.popUp.incorrectCredentials');
                 }

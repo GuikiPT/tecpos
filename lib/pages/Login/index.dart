@@ -1,77 +1,64 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tecpos/components/app_bar.dart';
-import 'package:tecpos/components/app_drawer.dart';
-import 'package:tecpos/pages/Login/login_popup.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'login_popup.dart'; // Import the LoginPopUp
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class LoginPage extends HookWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final isValidLogin = useState(true); // State to track login validity
+
+    void handleLoginStatusChanged(bool success) {
+      isValidLogin.value = success; // Update state based on login status
+    }
+
     return Scaffold(
-      appBar: const PosAppBar(
-        rootTitle: 'Login',
-      ),
-      drawer: const PosDrawer(),
-      body: Container(
-        color: Theme.of(context).scaffoldBackgroundColor,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SvgPicture.asset(
-                'assets/svgs/logo-banner.svg',
-                semanticsLabel: 'TecBased',
+      appBar: AppBar(title: Text('Login')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Placeholder for logo or other elements
+            Text('Welcome to the Login Page'),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: const Text('Login'),
+                    content: LoginPopUp(
+                      onLoginStatusChanged: handleLoginStatusChanged,
+                    ),
+                  ),
+                );
+              },
+              child: const Text('Show Login'),
+            ),
+            // Additional UI based on login status
+            Container(
+              margin: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: isValidLogin.value ? Colors.green : Colors.red,
+                    blurRadius: 10,
+                    spreadRadius: 5,
+                  ),
+                ],
               ),
-              const SizedBox(
-                height: 25,
-              ),
-              ElevatedButton.icon(
-                icon: const Icon(Icons.login),
-                label: Text(
-                  tr('screens.login.popUp.buttonText'),
+              child: Text(
+                isValidLogin.value ? 'Login Valid' : 'Invalid Login',
+                style: TextStyle(
+                  color: isValidLogin.value ? Colors.green : Colors.red,
                 ),
-                onPressed: () async {
-                  return showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: Text(
-                          tr('screens.login.popUp.buttonText'),
-                          textAlign: TextAlign.center,
-                        ),
-                        content: SingleChildScrollView(
-                          child: Column(
-                            children: [
-                              Center(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Theme.of(context).primaryColor,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: SvgPicture.asset(
-                                    'assets/svgs/worker.svg',
-                                    width: 128,
-                                    height: 128,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              const LoginPopUp(),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  );
-                },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
