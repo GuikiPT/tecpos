@@ -97,58 +97,66 @@ class HomePage extends HookWidget {
   Widget build(BuildContext context) {
     final expandedPanels = useState<List<int>>([]);
 
+    const double maxWidth = 400;
+
     return Scaffold(
       appBar: const PosAppBar(
         rootTitle: 'Home',
       ),
       drawer: const PosDrawer(),
-      body: SingleChildScrollView(
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        child: Container(
-          color: Theme.of(context).scaffoldBackgroundColor,
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Column(
-              children: [
-                ExpansionPanelList(
-                  expandedHeaderPadding: EdgeInsets.zero,
-                  elevation: 1,
-                  expansionCallback: (int panelIndex, bool isExpanded) {
-                    List<int> expanded = [...expandedPanels.value];
-                    if (isExpanded) {
-                      expanded.add(panelIndex);
-                    } else {
-                      expanded = expanded
-                          .where((element) => element != panelIndex)
-                          .toList();
-                    }
-                    expandedPanels.value = expanded;
-                  },
-                  children: menuItems.map((menuItem) {
-                    int index = menuItems.indexOf(menuItem);
-                    return ExpansionPanel(
-                      canTapOnHeader: true,
-                      isExpanded: expandedPanels.value.contains(index),
-                      headerBuilder: (context, isExpanded) {
-                        return ListTile(
-                          leading: Icon(menuItem.icon),
-                          title: Text(menuItem.title),
-                        );
+      body: Align(
+        alignment: Alignment.topCenter,
+        child: SizedBox(
+          width: maxWidth,
+          child: SingleChildScrollView(
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            child: Container(
+              color: Theme.of(context).scaffoldBackgroundColor,
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  children: [
+                    ExpansionPanelList(
+                      expandedHeaderPadding: EdgeInsets.zero,
+                      elevation: 1,
+                      expansionCallback: (int panelIndex, bool isExpanded) {
+                        List<int> expanded = [...expandedPanels.value];
+                        if (isExpanded) {
+                          expanded.add(panelIndex);
+                        } else {
+                          expanded = expanded
+                              .where((element) => element != panelIndex)
+                              .toList();
+                        }
+                        expandedPanels.value = expanded;
                       },
-                      body: Column(
-                        children: menuItem.subItems?.map((subItem) {
-                              return ListTile(
-                                leading: Icon(subItem.icon),
-                                title: Text(subItem.title),
-                                onTap: () => subItem.onTap(context),
-                              );
-                            }).toList() ??
-                            [],
-                      ),
-                    );
-                  }).toList(),
+                      children: menuItems.map((menuItem) {
+                        int index = menuItems.indexOf(menuItem);
+                        return ExpansionPanel(
+                          canTapOnHeader: true,
+                          isExpanded: expandedPanels.value.contains(index),
+                          headerBuilder: (context, isExpanded) {
+                            return ListTile(
+                              leading: Icon(menuItem.icon),
+                              title: Text(menuItem.title),
+                            );
+                          },
+                          body: Column(
+                            children: menuItem.subItems?.map((subItem) {
+                                  return ListTile(
+                                    leading: Icon(subItem.icon),
+                                    title: Text(subItem.title),
+                                    onTap: () => subItem.onTap(context),
+                                  );
+                                }).toList() ??
+                                [],
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         ),
