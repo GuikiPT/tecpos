@@ -30,9 +30,7 @@ final List<MenuItem> menuItems = [
         title: 'Vendas',
         icon: Icons.shopping_bag_outlined,
         onTap: (BuildContext context) {
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            context.go('/login');
-          });
+          context.go('/login');
         },
       ),
       MenuItem(

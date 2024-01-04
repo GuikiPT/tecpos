@@ -7,10 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:tecpos/components/numpad.dart';
 
 class LoginPopUp extends HookWidget {
-  final Function(bool) onLoginStatusChanged;
-
-  const LoginPopUp({Key? key, required this.onLoginStatusChanged})
-      : super(key: key);
+  const LoginPopUp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +24,13 @@ class LoginPopUp extends HookWidget {
     final formKey = GlobalKey<FormBuilderState>();
     final loginError = useState<String?>(null);
 
+    useEffect(() {
+      activeController = usernameController;
+      activeFocusInput = usernameFocusNode;
+
+      return () {};
+    }, []);
+
     return FormBuilder(
       key: formKey,
       child: Column(
@@ -36,8 +40,8 @@ class LoginPopUp extends HookWidget {
             controller: usernameController,
             onTap: () {
               activeController = usernameController;
-              activeFocusInput = usernameFocusNode;
               usernameFocusNode.requestFocus();
+              activeFocusInput = usernameFocusNode;
             },
             focusNode: usernameFocusNode,
             keyboardType: TextInputType.none,
@@ -58,8 +62,8 @@ class LoginPopUp extends HookWidget {
             controller: passwordController,
             onTap: () {
               activeController = passwordController;
-              activeFocusInput = passwordFocusNode;
               passwordFocusNode.requestFocus();
+              activeFocusInput = passwordFocusNode;
             },
             focusNode: passwordFocusNode,
             obscureText: obscurePasswordProtection.value,
@@ -116,10 +120,8 @@ class LoginPopUp extends HookWidget {
                 } else if (usernameController.text == '123' &&
                     passwordController.text == '123') {
                   loginError.value = null;
-                  onLoginStatusChanged(true);
                   context.go('/home');
                 } else {
-                  onLoginStatusChanged(false);
                   loginError.value =
                       tr('screens.login.popUp.incorrectCredentials');
                 }
