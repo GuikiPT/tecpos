@@ -16,20 +16,13 @@ class LoginPopUp extends HookWidget {
     final usernameFocusNode = useFocusNode();
     final passwordFocusNode = useFocusNode();
 
-    late TextEditingController activeController;
-    late FocusNode activeFocusInput;
+    TextEditingController activeController = usernameController;
+    FocusNode activeFocusInput = usernameFocusNode;
 
     final obscurePasswordProtection = useState(true);
 
     final formKey = GlobalKey<FormBuilderState>();
     final loginError = useState<String?>(null);
-
-    useEffect(() {
-      activeController = usernameController;
-      activeFocusInput = usernameFocusNode;
-
-      return () {};
-    }, []);
 
     return FormBuilder(
       key: formKey,
@@ -40,8 +33,8 @@ class LoginPopUp extends HookWidget {
             controller: usernameController,
             onTap: () {
               activeController = usernameController;
-              usernameFocusNode.requestFocus();
               activeFocusInput = usernameFocusNode;
+              usernameFocusNode.requestFocus();
             },
             focusNode: usernameFocusNode,
             keyboardType: TextInputType.none,
@@ -62,8 +55,8 @@ class LoginPopUp extends HookWidget {
             controller: passwordController,
             onTap: () {
               activeController = passwordController;
-              passwordFocusNode.requestFocus();
               activeFocusInput = passwordFocusNode;
+              passwordFocusNode.requestFocus();
             },
             focusNode: passwordFocusNode,
             obscureText: obscurePasswordProtection.value,
@@ -128,7 +121,13 @@ class LoginPopUp extends HookWidget {
               } else {
                 activeController.text += button;
               }
-              activeFocusInput.requestFocus();
+              if (activeFocusInput.hasFocus) {
+                activeFocusInput.unfocus();
+                Future.delayed(
+                    Duration.zero, () => activeFocusInput.requestFocus());
+              } else {
+                activeFocusInput.requestFocus();
+              }
             },
           ),
         ],
