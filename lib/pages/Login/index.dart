@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lottie/lottie.dart';
 import 'package:tecpos/components/app_bar.dart';
 import 'package:tecpos/components/app_drawer.dart';
 import 'package:tecpos/pages/Login/login_popup.dart';
