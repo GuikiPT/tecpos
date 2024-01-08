@@ -70,11 +70,10 @@ class LoginPage extends HookWidget {
                                       0,
                                       6,
                                     ),
-                                    child: Lottie.asset(
-                                      'assets/svgs/worker.json',
-                                      width: 150,
-                                      height: 150,
-                                      fit: BoxFit.fill,
+                                    child: SvgPicture.asset(
+                                      'assets/svgs/worker.svg',
+                                      width: 192,
+                                      height: 192,
                                     ),
                                   ),
                                 ),
